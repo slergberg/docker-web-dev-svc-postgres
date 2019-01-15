@@ -5,6 +5,6 @@ FROM postgres:9.6-alpine
 EXPOSE 5432
 
 # Healthcheck
-ADD ../docker-healthcheck.sh /usr/local/bin/docker-healthcheck
+ADD ./docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 HEALTHCHECK CMD docker-healthcheck
