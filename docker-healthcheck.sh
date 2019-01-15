@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# copied from https://github.com/docker-library/healthcheck/tree/master/postgres
+# From https://github.com/docker-library/healthcheck/blob/master/postgres/docker-healthcheck
 
 set -eo pipefail
 
