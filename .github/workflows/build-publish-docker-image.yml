@@ -5,13 +5,12 @@ on:
     branches:
       - master
 
-strategy:
-  matrix:
-    postgres: [9, 10, 11, 12]
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        postgres: [9, 10, 11, 12]
     steps:
       - uses: actions/checkout@v1
 
