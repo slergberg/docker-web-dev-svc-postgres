@@ -8,15 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        postgres: [9, 10, 11, 12]
     steps:
       - uses: actions/checkout@v1
 
       - name: Build the Docker image
         uses: actions/docker/cli@master
         with:
-          args: build --file Dockerfile --tag ${DOCKER_IMAGE_NAME}:${{ matrix.postgres }} ${{ matrix.postgres }}/.
+          args: build --file Dockerfile --tag ${DOCKER_IMAGE_NAME} .
         env:
           DOCKER_IMAGE_NAME: postgres

@@ -8,23 +8,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        postgres: [9, 10, 11, 12]
     steps:
       - uses: actions/checkout@v1
 
       - name: Build the Docker image
         uses: actions/docker/cli@master
         with:
-          args: build --file Dockerfile --tag ${DOCKER_IMAGE_NAME}:${{ matrix.postgres }} ${{ matrix.postgres }}/.
+          args: build --file Dockerfile --tag ${DOCKER_IMAGE_NAME} .
         env:
           DOCKER_IMAGE_NAME: postgres
 
       - name: Tag the Docker image
         uses: actions/docker/tag@master
         with:
-          args: ${DOCKER_IMAGE_NAME}:${{ matrix.postgres }} ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:${{ matrix.postgres }}
+          args: ${DOCKER_IMAGE_NAME} ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}
         env:
           DOCKER_ORGANIZATION_NAME: webdevsvc
           DOCKER_IMAGE_NAME: postgres
@@ -38,7 +35,7 @@ jobs:
       - name: Publish the image to Docker Hub
         uses: actions/docker/cli@master
         with:
-          args: push ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:${{ matrix.postgres }}
+          args: push ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:latest
         env:
           DOCKER_ORGANIZATION_NAME: webdevsvc
           DOCKER_IMAGE_NAME: postgres
