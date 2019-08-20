@@ -1,5 +1,5 @@
 # Base image
-FROM postgres:10.10-alpine
+FROM postgres:11.5-alpine
 
 # Expose ports
 EXPOSE 5432
