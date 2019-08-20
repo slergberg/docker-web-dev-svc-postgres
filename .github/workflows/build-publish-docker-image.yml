@@ -3,7 +3,7 @@ name: Build and publish Docker image
 on:
   push:
     branches:
-      - master
+      - 9
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
       - name: Publish the image to Docker Hub
         uses: actions/docker/cli@master
         with:
-          args: push ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:latest
+          args: push ${DOCKER_ORGANIZATION_NAME}/${DOCKER_IMAGE_NAME}:9
         env:
           DOCKER_ORGANIZATION_NAME: webdevsvc
           DOCKER_IMAGE_NAME: postgres
