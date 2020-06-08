@@ -1,0 +1,19 @@
+name: build and publish
+
+on:
+  push:
+    branches:
+      - '11'
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: docker/build-push-action@v1
+        with:
+          repository: webdevsvc/postgres
+          tags: '11'
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
