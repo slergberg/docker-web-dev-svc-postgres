@@ -11,4 +11,4 @@ update_configs:
     ignored_updates:
       - match:
           dependency_name: postgres
-          version_requirement: ">=10"
+          version_requirement: '>=10'
