@@ -1,14 +1,15 @@
-version: 1
+version: 2
 
-update_configs:
-  - package_manager: github_actions
-    directory: /
-    update_schedule: weekly
+updates:
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: postgres
+        versions: ['>=10.x']
 
-  - package_manager: docker
-    directory: /
-    update_schedule: weekly
-    ignored_updates:
-      - match:
-          dependency_name: postgres
-          version_requirement: '>=10'
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
