@@ -1,0 +1,49 @@
+version: 2
+
+updates:
+  - package-ecosystem: docker
+    target-branch: '9'
+    directory: '/'
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: postgres
+        versions: ['>=10.x']
+
+  - package-ecosystem: docker
+    target-branch: '10'
+    directory: '/'
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: postgres
+        versions: ['>=11.x']
+
+  - package-ecosystem: docker
+    target-branch: '11'
+    directory: '/'
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: postgres
+        versions: ['>=12.x']
+
+  - package-ecosystem: docker
+    target-branch: '12'
+    directory: '/'
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: postgres
+        versions: ['>=13.x']
+
+  - package-ecosystem: docker
+    target-branch: 'master'
+    directory: '/'
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
