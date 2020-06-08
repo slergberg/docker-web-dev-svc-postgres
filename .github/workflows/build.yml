@@ -3,7 +3,7 @@ name: build
 on:
   pull_request:
     branches:
-      - master
+      - '12'
 
 jobs:
   build:
