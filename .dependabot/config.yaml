@@ -1,0 +1,14 @@
+version: 1
+
+update_configs:
+  - package_manager: github_actions
+    directory: /
+    update_schedule: weekly
+
+  - package_manager: docker
+    directory: /
+    update_schedule: weekly
+    ignored_updates:
+      - match:
+          dependency_name: postgres
+          version_requirement: ">=10"
