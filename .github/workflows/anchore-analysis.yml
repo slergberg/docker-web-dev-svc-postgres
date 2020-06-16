@@ -1,0 +1,32 @@
+name: anchore-analysis
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  anchore-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2.2.0
+      - name: Build the Docker image
+        uses: docker/build-push-action@v1.1.0
+        with:
+          push: false
+          repository: webdevsvc/postgres
+          tags: latest
+      - name: Perform Anchore analysis
+        uses: anchore/scan-action@master
+        with:
+          acs-report-enable: true
+          dockerfile-path: Dockerfile
+          image-reference: webdevsvc/postgres:latest
+      - name: Upload Anchore report
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
