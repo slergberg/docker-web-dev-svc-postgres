@@ -1,5 +1,8 @@
 name: anchore-analysis
 
+env:
+  DOCKER_IMAGE_NAME: webdevsvc/postgres
+
 on:
   push:
     branches:
@@ -18,14 +21,14 @@ jobs:
         uses: docker/build-push-action@v1.1.0
         with:
           push: false
-          repository: webdevsvc/postgres
+          repository: ${{ env.DOCKER_IMAGE_NAME }}
           tags: latest
       - name: Perform Anchore analysis
         uses: anchore/scan-action@master
         with:
           acs-report-enable: true
           dockerfile-path: Dockerfile
-          image-reference: webdevsvc/postgres:latest
+          image-reference: ${{ env.DOCKER_IMAGE_NAME }}:latest
       - name: Upload Anchore report
         uses: github/codeql-action/upload-sarif@v1
         with:

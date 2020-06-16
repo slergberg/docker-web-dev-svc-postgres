@@ -1,4 +1,7 @@
-name: build and publish
+name: build-publish
+
+env:
+  DOCKER_IMAGE_NAME: webdevsvc/postgres
 
 on:
   push:
@@ -9,11 +12,12 @@ jobs:
   build-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: docker/build-push-action@v1
+      - name: Checkout source code
+        uses: actions/checkout@v2.2.0
+      - name: Build and Push the Docker image
+        uses: docker/build-push-action@v1.1.0
         with:
-          repository: webdevsvc/postgres
-          tags: 'latest'
+          repository: ${{ env.DOCKER_IMAGE_NAME }}
+          tags: latest
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           username: ${{ secrets.DOCKER_HUB_USERNAME }}

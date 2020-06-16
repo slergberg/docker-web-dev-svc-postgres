@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: docker/build-push-action@v1
+      - name: Checkout source code
+        uses: actions/checkout@v2.2.0
+      - name: Build the Docker image
+        uses: docker/build-push-action@v1.1.0
         with:
           push: false
-          tag_with_sha: true
